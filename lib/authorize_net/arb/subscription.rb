@@ -23,7 +23,7 @@ module AuthorizeNet::ARB
     
     include AuthorizeNet::Model
     
-    attr_accessor :name, :length, :unit, :start_date, :total_occurrences, :trial_occurrences, :amount, :trial_amount, :invoice_number, :description, :subscription_id, :credit_card, :billing_address, :shipping_address, :customer
+    attr_accessor :name, :length, :unit, :start_date, :total_occurrences, :trial_occurrences, :amount, :trial_amount, :invoice_number, :description, :subscription_id, :credit_card, :echeck, :billing_address, :shipping_address, :customer
     
     # Override the length setter to provide support for :unlimited shortcut. Do not document this method in rdoc.
     def length=(new_length) #:nodoc:
@@ -61,6 +61,7 @@ module AuthorizeNet::ARB
         :subscription_id => @subscription_id
       }
       hash.merge!(@credit_card.to_hash) unless @credit_card.nil?
+      hash.merge!(@echeck.to_hash) unless @echeck.nil?
       hash.merge!(@billing_address.to_hash) unless @billing_address.nil?
       hash.merge!(@shipping_address.to_hash) unless @shipping_address.nil?
       hash.merge!(@customer.to_hash) unless @customer.nil?

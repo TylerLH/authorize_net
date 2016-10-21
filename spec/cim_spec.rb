@@ -308,7 +308,7 @@ describe AuthorizeNet::CIM::Transaction do
         direct_response.custom_fields[:bar].should == '456'
       end
       
-      it "should support custom fields with custom delimeters" do
+      it "should support custom fields with custom delimiters" do
         transaction = AuthorizeNet::CIM::Transaction.new(@api_login, @api_key, :gateway => :sandbox)
         response = transaction.create_transaction_auth_capture(@amount, @profile, @payment_profile, AuthorizeNet::Order.new(), :custom_fields => {:foo => '123', :bar => '456'}, :aim_options => {:delim_char => '$'})
         response.success?.should be_true
